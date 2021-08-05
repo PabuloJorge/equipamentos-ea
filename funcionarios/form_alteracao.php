@@ -1,0 +1,299 @@
+<?php
+include_once('../bd/conectar.php');
+$cpf = $_GET['cpf'];
+$sql = "SELECT * FROM tb_funcionario WHERE cpf='$cpf'";
+$resultado = mysqli_query($strcon, $sql);
+$dados = mysqli_fetch_assoc($resultado);
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../img/favicon.ico" rel="icon">
+
+
+    <title>Equipamentos EA</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <a class="navbar-brand text-center" href="#" style="font-size: 30px">
+            <img src="../img/nav.png" width="60" height="50" class="d-inline-block align-top" alt="">
+            Equipamentos EA
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.php">Início</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Computadores
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="../computadores/">Listar</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../computadores/form_cadastro.php">Cadastrar</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Equipamentos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="../equipamentos/">Listar</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../equipamentos/form_cadastro.php">Cadastrar</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Funcionários
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./index.php">Listar</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./form_cadastro.php">Cadastrar</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manutenção
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="../manutencao/">Listar</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../manutencao/form_cadastro.php">Cadastrar</a>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="content-wrapper  m-auto" style="width: 90%;">
+        <section class="mt-1 mb-5">
+            <h2 class="text-center">Atualizar Informações do Funcionário</h2>
+            <hr>
+            <div class="mb-50">
+                <form class="form-horizontal was-validated" method="POST" action="alteracao.php?cpf=<?php echo $dados['cpf'] ?>&id_atual=<?php echo $dados['computador_id'] ?>&id_home_atual=<?php echo $dados['computador_id_home'] ?>" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label class="col control-label">CPF</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="cpf" class="form-control w-25" value="<?php echo $dados['cpf']; ?>" placeholder="000.000.000-00" required maxlength="14" minlength="11" onkeypress="$(this).mask('000.000.000-00');">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Nome</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="nome" value="<?php echo $dados['nome']; ?>" class="form-control w-50" maxlength="100" placeholder="Nome Completo" required>
+                        </div>
+                    </div>
+                    <h5>ID COMPUTADOR</h5>
+                    <div class="form-group">
+                        <label class="col control-label">Empresa</label>
+                        <div class="col-sm-10">
+                            <select name="computador_id" class="form-control w-50">
+                                <option value="null" data-default selected></option>
+                                <?php
+                                include_once('../bd/conectar.php');
+
+                                $sql = "SELECT * FROM tb_computador WHERE status = 'Inativo' and situacao = 'Reserva' or id = '" . $dados['computador_id'] . "';";
+
+                                $resultado = mysqli_query($strcon, $sql);
+                                $cont = 0;
+                                while ($dado = mysqli_fetch_assoc($resultado)) {
+                                    if ($dados['computador_id'] == $dado['id']) {
+                                        $selected = "selected";
+                                    } else {
+                                        $selected = "";
+                                    }
+                                    echo "<option value='" . $dado['id'] . "' $selected>" . $dado['id'] . " - " . $dado['tipo'] . " " . $dado['marca'] . " " . $dado['processador_modelo'] . " " . $dado['ram_capacidade'] . " RAM " . $dado['disco_tipo'] . " " . $dado['disco_capacidade'] . " " . $dado['sistema_operacional'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Home Office</label>
+                        <div class="col-sm-10">
+                            <select name="computador_id_home" class="form-control w-50">
+                                <option value="null" data-default selected></option>
+                                <?php
+                                include_once('../bd/conectar.php');
+
+                                $sql = "SELECT * FROM tb_computador WHERE status = 'Inativo' and situacao = 'Reserva' or id = '" . $dados['computador_id_home'] . "';";
+
+                                $resultado = mysqli_query($strcon, $sql);
+                                $cont = 0;
+                                while ($dado = mysqli_fetch_assoc($resultado)) {
+                                    if ($dados['computador_id_home'] == $dado['id']) {
+                                        $selected = "selected";
+                                    } else {
+                                        $selected = "";
+                                    }
+                                    echo "<option value='" . $dado['id'] . "' $selected>" . $dado['id'] . " - " . $dado['tipo'] . " " . $dado['marca'] . " " . $dado['processador_modelo'] . " " . $dado['ram_capacidade'] . " RAM " . $dado['disco_tipo'] . " " . $dado['disco_capacidade'] . " " . $dado['sistema_operacional'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Local</label>
+                        <div class="col-sm-10">
+                            <select name="local" class="form-control w-25" required>
+                                <option value="" data-default disabled selected></option>
+                                <option value="Home Office" <?php if ($dados['local'] == "Home Office") {
+                                                                echo "selected";
+                                                            } ?>>Home Office</option>
+                                <option value="Escritório" <?php if ($dados['local'] == "Escritório") {
+                                                                echo "selected";
+                                                            } ?>>Escritório</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Tipo</label>
+                        <div class="col-sm-10">
+                            <select name="tipo" class="form-control w-25" required>
+                                <option value="" data-default disabled selected></option>
+                                <option value="Operador" <?php if ($dados['tipo'] == "Operador") {
+                                                                echo "selected";
+                                                            } ?>>Operador</option>
+                                <option value="Supervisor" <?php if ($dados['tipo'] == "Supervisor") {
+                                                                echo "selected";
+                                                            } ?>>Supervisor</option>
+                                <option value="Coordenador" <?php if ($dados['tipo'] == "Coordenador") {
+                                                                echo "selected";
+                                                            } ?>>Coordenador</option>
+                                <option value="Back Office" <?php if ($dados['tipo'] == "Back Office") {
+                                                                echo "selected";
+                                                            } ?>>Back Office</option>
+                                <option value="Administrativo" <?php if ($dados['tipo'] == "Administrativo") {
+                                                                    echo "selected";
+                                                                } ?>>Administrativo</option>
+                                <option value="Jurídico" <?php if ($dados['tipo'] == "Jurídico") {
+                                                                echo "selected";
+                                                            } ?>>Jurídico</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col control-label">Setor</label>
+                        <div class="col-sm-10">
+                            <select name="setor" class="form-control w-25" required>
+                                <option value="" data-default disabled selected></option>
+                                <option value="Jurídico" <?php if ($dados['setor'] == "Jurídico") {
+                                                                echo "selected";
+                                                            } ?>>Jurídico</option>
+                                <option value="Cobrança" <?php if ($dados['setor'] == "Cobrança") {
+                                                                echo "selected";
+                                                            } ?>>Cobrança</option>
+                                <option value="Administrativo" <?php if ($dados['setor'] == "Administrativo") {
+                                                                    echo "selected";
+                                                                } ?>>Administrativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Carteira</label>
+                        <div class="col-sm-10">
+                            <select name="carteira" class="form-control w-25" required>
+                                <option value="" data-default disabled selected></option>
+                                <option value="GM" <?php if ($dados['carteira'] == "GM") {
+                                                        echo "selected";
+                                                    } ?>>GM</option>
+                                <option value="Finsol" <?php if ($dados['carteira'] == "Finsol") {
+                                                            echo "selected";
+                                                        } ?>>Finsol</option>
+                                <option value="CNHi" <?php if ($dados['carteira'] == "CNHi") {
+                                                            echo "selected";
+                                                        } ?>>CNHi</option>
+                                <option value="DLL" <?php if ($dados['carteira'] == "DLL") {
+                                                        echo "selected";
+                                                    } ?>>DLL</option>
+                                <option value="Shopping" <?php if ($dados['carteira'] == "Shopping") {
+                                                                echo "selected";
+                                                            } ?>>Shopping</option>
+                                <option value="Condomínios e Especiais" <?php if ($dados['carteira'] == "Condomínios e Especiais") {
+                                                                            echo "selected";
+                                                                        } ?>>Condomínios e Especiais</option>
+                                <option value="Outros" <?php if ($dados['carteira'] == "Outros") {
+                                                            echo "selected";
+                                                        } ?>>Outros</option>
+                                <option value="Não se Aplica" <?php if ($dados['carteira'] == "Não se Aplica") {
+                                                                    echo "selected";
+                                                                } ?>>Não se Aplica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Endereço</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="endereco" placeholder="Logradouro, Nº, Complemento, Bairro - Cidade" value="<?php echo $dados['endereco']; ?>" maxlength="150" class="form-control w-50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">AnyDesk</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="anydesk" value="<?php echo $dados['anydesk']; ?>" maxlength="20" class="form-control w-50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col control-label">Velocidade do Link</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="velocidade_link" value="<?php echo $dados['velocidade_link']; ?>" placeholder="Ex: 150 Mbps" class="form-control w-50">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success  mr-3">Salvar</button>
+                            <a href="./index.php" class="btn btn-primary">Voltar</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <?php
+        if (isset($_GET['computador_id_invalido'])) {
+            if ($_GET['computador_id_invalido'] == "True") :
+        ?>
+                <div class="text-center text-danger">
+                    <?php echo    '<body onload="alert(' . "'" . 'O ID dos computadores não podem ser iguais!' . "'" . ');">'; ?>
+                </div>
+        <?php
+            endif;
+            unset($_GET['computador_id_invalido']);
+        }
+        ?>
+
+    </div>
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</body>
+
+</html>
