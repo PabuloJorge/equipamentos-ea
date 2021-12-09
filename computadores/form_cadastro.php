@@ -194,7 +194,7 @@
                             <select name="status" class="form-control w-25" required>
                                 <option value="" data-default disabled selected></option>
                                 <option value="Ativo">Ativo</option>
-                                <option value="Inativo">Inativo</option>
+                                <option value="Inativo" selected>Inativo</option>
                             </select>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                             <select name="situacao" class="form-control w-25" required>
                                 <option value="" data-default disabled selected></option>
                                 <option value="Operacional">Operacional</option>
-                                <option value="Reserva">Reserva</option>
+                                <option value="Reserva" selected>Reserva</option>
                                 <option value="Sucata">Sucata</option>
                             </select>
                         </div>
