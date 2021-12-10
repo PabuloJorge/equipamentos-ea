@@ -15,7 +15,7 @@
             <p>Para construí-los, foi utilizado a biblioteca <strong>ChartJS</strong>.</p>
         </div>  
   
-  <p>Os gráficos estão sendo “alimentados” dinamicamente através de consultas feitas ao Banco de Dados MySQL
+  <p>Os gráficos estão sendo "alimentados" dinamicamente através de consultas feitas ao Banco de Dados MySQL
             utilizando o PHP.</p>
         <img src="https://user-images.githubusercontent.com/65266238/145582202-b4e24625-395d-462a-8cad-624a6488b18d.png" width="600px" alt="Gráficos">
   </div>
@@ -111,7 +111,7 @@
     <img src="https://user-images.githubusercontent.com/65266238/145594160-82e53f79-f3e1-4a2d-91e9-62f597854afe.png" width="500x" alt="passo2">
     <p><strong>3-</strong> Reparo em andamento:</p>
     <img src="https://user-images.githubusercontent.com/65266238/145594161-e96d989c-14de-4eb9-811e-a1c1fb250675.png" width="1000px" alt="passo3">
-    <p><strong>4-</strong> Supondo que o reparo tenha finalizado e é necessário fazer essa alteração no sistema, no link do botão “Editar” é possível alterar o “status” do reparo:</p>
+    <p><strong>4-</strong> Supondo que o reparo tenha finalizado e é necessário fazer essa alteração no sistema, no link do botão "Editar" é possível alterar o "status" do reparo:</p>
     <img src="https://user-images.githubusercontent.com/65266238/145594163-c6106030-8847-4153-b75d-5896494eb576.png" width="300px" alt="passo4">
     <p><strong>5-</strong> Reparo finalizado:</p>
     <img src="https://user-images.githubusercontent.com/65266238/145594165-205a16b6-a1d1-4777-b02f-a4c62a22267a.png" width="1000px" alt="passo5">
