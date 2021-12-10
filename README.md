@@ -39,9 +39,9 @@
   <h2>Computadores</h2>
   <p>O computador tem algumas colunas importantes para destacar:</p>
   <ul>
-    <li>Id</li>
-    <li>Status (Ativo / Inativo)</li>
-    <li>Situação (Operacional / Reserva / Manutenção / Sucata)</li>
+    <li><strong>Id</strong></li>
+    <li><strong>Status (Ativo / Inativo)</strong></li>
+    <li><strong>Situação (Operacional / Reserva / Manutenção / Sucata)</strong></li>
   </ul>
   
   <p>Possíveis estados:</p>
@@ -62,6 +62,72 @@
    <!--Funcionários-->
   <div id="funcionarios">
     <h2>Funcionários</h2>
+      <p>Para os funcionários, vale destacar as seguintes colunas:</p>
+      <ul>
+          <li><strong>CPF</strong></li>
+          Identificador do funcionário
+          <li><strong>Id Computador Empresa</strong></li>
+          ID do computador que o funcionário está utilizando no escritório
+          <li><strong>Id Computador Home</strong></li>
+          ID do computador que o funcionário está utilizando na sua casa, para os que estão trabalhando Home Office ou de forma híbrida 
+       </ul>
     </div>
   
-  
+  <p>Obviamente que o sistema não permite que os funcionários se relacionem com o mesmo computador. Quando vamos alocar um computador para o funcionário, o sistema vai exibir apenas os que estão com <strong>Status == Inativo && Situação == Reserva</strong>.</p>
+    
+    
+    
+    
+    
+   <!--Equipamentos-->
+  <div id="equipamentos">
+    <h2>Equipamentos</h2>  
+      <p>Diferente dos computadores, os equipamentos não têm relacionamento direto com os funcionários no sistema. Mas existem as colunas como:</p>
+       <ul>
+         <li><strong>Status (Ativo / Inativo)</strong></li>
+         <li><strong>Situação (Operacional / Reserva / Sucata)</strong></li>
+      </ul>
+ <p>Que seguem a mesma lógica dos computadores. Um diferencial é a coluna:
+</p>
+     <ul>
+         <li><strong>Tipo (Mouses, Teclados, Headsets, TVs, Monitores)</strong></li>
+      </ul>
+      <img src="https://user-images.githubusercontent.com/65266238/145589538-b7248d35-575e-4dd1-95aa-d0d85848165b.png" width="600px" alt="Equipamentos">
+   </div>
+    
+    <div id="manutencao">
+      <h2></h2>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
