@@ -105,6 +105,12 @@ $dados = mysqli_fetch_assoc($resultado);
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col control-label">Etiqueta</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="etiqueta" value="<?php echo $dados['etiqueta']; ?>" class="form-control  w-25" maxlength="50" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col control-label">Modelo</label>
                         <div class="col-sm-10">
                             <input type="text" name="modelo" value="<?php echo $dados['modelo']; ?>" class="form-control  w-25" maxlength="20" required>

@@ -8,6 +8,7 @@ include_once('../functions/limpaCampos.php');
 
 $data_aquisicao = $_POST['data_aquisicao'];
 $marca = $_POST['marca'];
+echo $etiqueta = $_POST['etiqueta'];
 $modelo = $_POST['modelo'];
 $sistema_operacional = $_POST['sistema_operacional'];
 $tipo = $_POST['tipo'];
@@ -21,8 +22,8 @@ $status = $_POST['status'];
 $situacao = $_POST['situacao'];
 
 
-$sql = "INSERT INTO tb_computador (data_aquisicao, marca, modelo, sistema_operacional, tipo, ram_tipo, ram_capacidade, disco_tipo, disco_capacidade, processador_modelo, processador_velocidade, status, situacao)
-                VALUES ('$data_aquisicao', '$marca', '$modelo', '$sistema_operacional', '$tipo', '$ram_tipo', '$ram_capacidade', '$disco_tipo', '$disco_capacidade', '$processador_modelo', '$processador_velocidade', '$status', '$situacao')";
+$sql = "INSERT INTO tb_computador (data_aquisicao, marca,etiqueta, modelo, sistema_operacional, tipo, ram_tipo, ram_capacidade, disco_tipo, disco_capacidade, processador_modelo, processador_velocidade, status, situacao)
+                VALUES ('$data_aquisicao', '$marca', '$etiqueta', '$modelo', '$sistema_operacional', '$tipo', '$ram_tipo', '$ram_capacidade', '$disco_tipo', '$disco_capacidade', '$processador_modelo', '$processador_velocidade', '$status', '$situacao')";
 
 $resultado = mysqli_query($strcon, $sql);
 

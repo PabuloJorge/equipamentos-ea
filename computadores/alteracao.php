@@ -8,6 +8,7 @@ $id = $_GET['id'];
 
 $data_aquisicao = $_POST['data_aquisicao'];
 $marca = $_POST['marca'];
+$etiqueta = $_POST['etiqueta'];
 $modelo = $_POST['modelo'];
 $sistema_operacional = $_POST['sistema_operacional'];
 $tipo = $_POST['tipo'];
@@ -33,7 +34,7 @@ if ($status == "Inativo") {
     }
 }
 
-$sql = "UPDATE tb_computador SET data_aquisicao = '$data_aquisicao', marca = '$marca', modelo = '$modelo', sistema_operacional = '$sistema_operacional', tipo = '$tipo', ram_tipo = '$ram_tipo', ram_capacidade = '$ram_capacidade', disco_tipo = '$disco_tipo', disco_capacidade = '$disco_capacidade', processador_modelo = '$processador_modelo', processador_velocidade = '$processador_velocidade', status = '$status', situacao = '$situacao' WHERE id = '$id'";
+$sql = "UPDATE tb_computador SET data_aquisicao = '$data_aquisicao', marca = '$marca', etiqueta = '$etiqueta', modelo = '$modelo', sistema_operacional = '$sistema_operacional', tipo = '$tipo', ram_tipo = '$ram_tipo', ram_capacidade = '$ram_capacidade', disco_tipo = '$disco_tipo', disco_capacidade = '$disco_capacidade', processador_modelo = '$processador_modelo', processador_velocidade = '$processador_velocidade', status = '$status', situacao = '$situacao' WHERE id = '$id'";
 
 $resultado = mysqli_query($strcon, $sql);
 

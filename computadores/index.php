@@ -83,8 +83,8 @@
                 <table id="tabela" class="table table-hover text-center shadow-lg table-bordered" style="font-size: 13px;">
                     <thead>
                         <tr>
-                            <th scope="col" rowspan="2" class="text-center align-middle p-1">#</th>
                             <th scope="col" rowspan="2" class="text-center align-middle p-1">ID</th>
+                            <th scope="col" rowspan="2" class="text-center align-middle p-1">NÚMERO ETIQUETA</th>
                             <th scope="col" colspan="4" class="text-center table-primary p-1">INFORMAÇÕES GERAIS</th>
                             <th scope="col" colspan="2" class="text-center table-success p-1">MEMÓRIA RAM</th>
                             <th scope="col" colspan="2" class="text-center table-warning p-1">DISCO RÍGIDO</th>
@@ -144,9 +144,9 @@
 
                             echo "
 						<tr>
-							<th class='align-middle' scope='row'>" . $cont . "</th>
-
+							
 							<td  class='align-middle'>" . $dados['id'] . "</td>
+                            <td  class='align-middle'>" . $dados['etiqueta'] . "</td>
                             <td  class='align-middle'>" . $dados['marca'] . "</td>
                             <td  class='align-middle'>" . $dados['modelo'] . "</td>
                             <td  class='align-middle'>" . $dados['sistema_operacional'] . "</td>
